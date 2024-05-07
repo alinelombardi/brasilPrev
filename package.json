@@ -1,0 +1,30 @@
+{
+  "name": "brasilprev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "test": "jest",
+    "dev": "nodemon ./src/app.js",
+    "start:docker": "node app.js"
+  },
+  "keywords": [],
+  "author": "Aline Lombardi",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "sequelize": "^6.37.3",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
+  }
+}

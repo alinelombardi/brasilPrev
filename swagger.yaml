@@ -1,0 +1,204 @@
+swagger: '2.0'
+info:
+  title: BrasilPrev API
+  description: API para gerenciamento de produtos, aportes, clientes, planos e resgates da BrasilPrev
+  version: '1.0.0'
+host: localhost:3000
+basePath: /api
+schemes:
+  - http
+paths:
+  /produto:
+    post:
+      summary: Cadastrar um novo produto
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Dados do produto a ser cadastrado
+          required: true
+          schema:
+            type: object
+            properties:
+              nome:
+                type: string
+              susep:
+                type: string
+              expiracaoDeVenda:
+                type: string
+                format: date-time
+              valorMinimoAporteInicial:
+                type: number
+              valorMinimoAporteExtra:
+                type: number
+              idadeDeEntrada:
+                type: integer
+              idadeDeSaida:
+                type: integer
+              carenciaInicialDeResgate:
+                type: integer
+              carenciaEntreResgates:
+                type: integer
+      responses:
+        201:
+          description: Produto cadastrado com sucesso
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: Erro ao cadastrar o produto
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /cliente:
+    post:
+      summary: Cadastrar um novo cliente
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Dados do cliente a ser cadastrado
+          required: true
+          schema:
+            type: object
+            properties:
+              nome:
+                type: string
+              cpf:
+                type: string
+              endereco:
+                type: string
+      responses:
+        201:
+          description: Cliente cadastrado com sucesso
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: Erro ao cadastrar o cliente
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /aporte:
+    post:
+      summary: Realizar um novo aporte
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Dados do aporte a ser realizado
+          required: true
+          schema:
+            type: object
+            properties:
+              idCliente:
+                type: string
+              idPlano:
+                type: string
+              valorAporte:
+                type: number
+      responses:
+        201:
+          description: Aporte realizado com sucesso
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: Erro ao realizar o aporte
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /plano:
+    post:
+      summary: Cadastrar um novo plano
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Dados do plano a ser cadastrado
+          required: true
+          schema:
+            type: object
+            properties:
+              idProduto:
+                type: string
+              nomePlano:
+                type: string
+              saldo:
+                type: number
+              dataContratacao:
+                type: string
+                format: date-time
+      responses:
+        201:
+          description: Plano cadastrado com sucesso
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: Erro ao cadastrar o plano
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+  /resgate:
+    post:
+      summary: Realizar um novo resgate
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Dados do resgate a ser realizado
+          required: true
+          schema:
+            type: object
+            properties:
+              idPlano:
+                type: string
+              valorResgate:
+                type: number
+      responses:
+        201:
+          description: Resgate realizado com sucesso
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+        500:
+          description: Erro ao realizar o resgate
+          schema:
+            type: object
+            properties:
+              error:
+                type: string

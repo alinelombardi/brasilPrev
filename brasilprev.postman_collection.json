@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "7aa2da23-db5e-4edb-b808-adba67f764e5",
+		"name": "brasilprev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15124006",
+		"_collection_link": "https://speeding-crater-515503.postman.co/workspace/Cappacita~dc0f62b4-4638-477a-ade7-d5eaac2b62ca/collection/15124006-7aa2da23-db5e-4edb-b808-adba67f764e5?action=share&source=collection_link&creator=15124006"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"45645645600\",\r\n    \"nome\": \"José da Silva\",\r\n    \"email\": \"jose@cliente.com\",\r\n    \"dataDeNascimento\": \"2010-08-24T12:00:00.000Z\",\r\n    \"genero\": \"Masculino\",\r\n    \"rendaMensal\": 2899.5\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Produtos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Brasilprev Médio Prazo\",\r\n    \"susep\": \"15414900840201816\",\r\n    \"expiracaoDeVenda\": \"2025-01-01T12:00:00.000Z\",\r\n    \"valorMinimoAporteInicial\": 1000.0,    // valor mínimo de aporte no momento da contratação\r\n    \"valorMinimoAporteExtra\": 100.0,    // valor mínimo do aporte extra\r\n    \"idadeDeEntrada\": 18,    // idade mínima para comprar o produto\r\n    \"idadeDeSaida\": 60,     // idade máxima para começar a usufruir do benefício\r\n    \"carenciaInicialDeResgate\": 60,    // em dias - carência para realizar o primeiro resgate\r\n    \"carenciaEntreResgates\": 30     // em dias - carência para realizar outro resgate após um resgate realizado.\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/produto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"produto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Planos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCliente\": \"e4afc63d-9d34-434c-b3f6-a71626227f5e\",\r\n    \"idProduto\": \"43d2d50d-26d6-4d83-bc0a-ca6f89e133b4\",\r\n    \"aporte\": 2000.00,\r\n    \"dataDaContratacao\": \"2023-05-06T12:00:00.000Z\",\r\n    \"idadeDeAposentadoria\": 60\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/plano",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"plano"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aporte",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idCliente\": \"e4afc63d-9d34-434c-b3f6-a71626227f5e\",\r\n    \"idPlano\": \"24114f74-bb13-4407-baed-5cd53b59b7ec\",\r\n    \"valorAporte\": 10000.00\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/aporte",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"aporte"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Resgate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idPlano\": \"24114f74-bb13-4407-baed-5cd53b59b7ec\",\r\n    \"valorResgate\": 100.00\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/resgate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"resgate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
