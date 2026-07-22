@@ -1,20 +1,34 @@
-const planoService = require('../services/planoService');
+const planoController = require('../../src/controllers/planoController');
+const planoService = require('../../src/services/planoService');
 
-const cadastrarPlano = async (req, res) => {
-    try {
-        const novoPlano = req.body;
-        const novoPlanoId = await planoService.contratarPlano(novoPlano);
-        res.status(201).json({ id: novoPlanoId });
-    } catch (error) {
-        console.error('Erro ao cadastrar o plano:', error);
-        if (error.message === 'Dados de plano inválidos') {
-            res.status(400).json({ error: error.message });
-        } else {
-            res.status(500).json({ error: `Erro ao cadastrar o plano: ${error.message}` });
-        }
-    }
-};
+jest.mock('../../src/services/planoService');
 
-module.exports = { 
-    cadastrarPlano
- };
+describe('Plano Controller', () => {
+    test('Deve cadastrar um plano com dados válidos', async () => {
+        const req = {
+            body: {
+                nome: 'Plano de Previdência A',
+                susep: '123456',
+                expiracaoDeVenda: '2025-12-31T23:59:59Z',
+                valorMinimoAporteInicial: 1000.0,
+                valorMinimoAporteExtra: 100.0,
+                idadeDeEntrada: 18,
+                idadeDeSaida: 60,
+                carenciaInicialDeResgate: 60,
+                carenciaEntreResgates: 30
+            }
+        };
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn()
+        };
+        const idPlanoMock = 'abc123';
+
+        planoService.contratarPlano.mockResolvedValue(idPlanoMock);
+
+        await planoController.cadastrarPlano(req, res);
+
+        expect(res.status).toHaveBeenCalledWith(201);
+        expect(res.json).toHaveBeenCalledWith({ id: idPlanoMock });
+    });
+});
