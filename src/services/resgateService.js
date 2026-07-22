@@ -27,14 +27,14 @@ const realizarResgate = async (resgate) => {
     const dataAtual = new Date();
     const diferencaEmDias = Math.floor((dataAtual - dataContratacao) / (1000 * 60 * 60 * 24));
 
-    if (diferencaEmDias < produto.carencia_entre_resgates) {
+    if (diferencaEmDias < produto.carencia_inicial_de_resgate) {
         throw new Error('Período de carência ainda não foi completado para realizar o resgate');
     };
 
     const ultimoResgateQuery = 'SELECT MAX(data_do_resgate) AS ultimo_resgate FROM resgates WHERE id_plano = $1';
     const ultimoResgateResult = await pool.query(ultimoResgateQuery, [idPlano]);
 
-    if (ultimoResgateResult.rows.length != 0 || ultimoResgateResult.rows[0].ultimo_resgate != null) {
+    if (ultimoResgateResult.rows.length != 0 && ultimoResgateResult.rows[0].ultimo_resgate != null) {
         
         const ultimoResgate = new Date(ultimoResgateResult.rows[0].ultimo_resgate);
         const diferencaEntreResgates = Math.floor((dataAtual - ultimoResgate) / (1000 * 60 * 60 * 24));
